@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+  - name: install basic utilities
+    package:
+      name: 
+        - htop
+        - cowsay
+        - cmatrix
+        - fortune-mod
