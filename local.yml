@@ -12,11 +12,5 @@
         - cowsay
         - cmatrix
         - fortune-mod
-        - vim-nox
-  
-  tasks:
-  - name: remove vim
-    package:
-      name: 
         - vim
-    state: absent
+      
