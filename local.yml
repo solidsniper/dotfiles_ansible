@@ -13,4 +13,32 @@
         - cmatrix
         - fortune-mod
         - vim
-      
+        - zsh
+
+  - name: copy .zshrc file
+    copy: 
+      src: files/zshrc
+      dest: /home/alex/.zshrc
+      owner: alex
+      group: alex
+
+  - name: add ansible user
+    user:
+     name: groot
+     system: yes
+  
+  - name: set up sudo for ansible user
+    copy:
+      src: files/sudoers_groot
+      dest: /etc/sudoers.d/groot
+      owner: root
+      group: root
+      mode: 0440
+
+  - name: add ansible-pull cron job
+    cron:
+      name: ansible auto-provision
+      user: groot
+      minute: "*/10"
+      job: ansible-pull -o -U https://github.com/solidsniper/dotfiles_ansible.git"
+  
